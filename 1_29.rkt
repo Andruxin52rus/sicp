@@ -1,10 +1,10 @@
 #lang racket
 
-(define (apply-op op term-func first-item next-item-func last-item gt-func)
+(define (sum term-func first-item next-item-func last-item gt-func)
     (define (iter item)
         (if (gt-func item last-item)
         0
-        (op (term-func item)
+        (+ (term-func item)
             (iter (next-item-func item)))))
   (iter first-item))
 
@@ -18,7 +18,7 @@
         (+ a step))
     (define (gt first second)
         (> first second))
-    (/ (* step (apply-op + square-approx a next-bucket (- b step) gt)) 6))
+    (/ (* step (sum square-approx a next-bucket (- b step) gt)) 6))
 
 (define (cube x)
     (* x x x))
