@@ -1,7 +1,7 @@
 #lang racket
 
 (define (cont-frac n d k)
-    (define (cont-frac-iter i)
+    (define (cont-frac-iter i)  ; recursive version
         (if (< i k)
             (/ (n i) (+ (d i) (cont-frac-iter (+ i 1))))
             (/ (n i) (d i))))
